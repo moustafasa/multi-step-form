@@ -102,9 +102,9 @@ a {
 .container form header h2 {
   color: var(--marine-blue);
   text-transform: capitalize;
-  font-weight: 600;
+  font-weight: bold;
   margin-bottom: 15px;
-  font-size: 25px;
+  font-size: 35px;
 }
 .container form header p {
   padding-inline-end: 30px;
@@ -136,11 +136,16 @@ form .buttons {
   }
 }
 
+@media (min-width: 992px) {
+  form .buttons {
+    padding-inline: 120px;
+  }
+}
 form .buttons button {
   display: block;
   border: none;
   color: var(--white);
-  padding: 12px 20px;
+  padding: 12px 30px;
   border-radius: 5px;
   cursor: pointer;
   text-transform: capitalize;
@@ -155,9 +160,17 @@ form .buttons .back:hover {
 }
 form .buttons .next {
   background-color: var(--marine-blue);
+  transition: 0.5s opacity;
+}
+form .buttons .next:hover {
+  opacity: 0.8;
 }
 form .buttons .confirm {
   background-color: var(--purplish-blue);
+  transition: 0.5s;
+}
+form .buttons .confirm:hover {
+  background-color: var(--pastel-blue);
 }
 /* end component */
 /* start sidebar */
@@ -170,7 +183,7 @@ form .buttons .confirm {
 @media (min-width: 768px) {
   .container {
     flex-direction: row;
-    column-gap: 120px;
+    column-gap: 0px;
     align-items: center;
     background-color: var(--white);
     padding-block: 15px;
@@ -268,11 +281,10 @@ form .buttons .confirm {
   }
 }
 .container aside ul li .label span:first-child {
-  font-size: 14px;
   color: var(--cool-gray);
 }
 .container aside ul li .label span:last-child {
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: 1px;
 }
 /* end sidebar */
@@ -290,13 +302,13 @@ form .buttons .confirm {
     margin-top: 0;
     height: 100%;
     padding-block-start: 50px;
-    padding-bottom: 0;
+    padding-bottom: 78px;
     position: relative;
   }
 }
 @media (min-width: 992px) {
-  .container .form {
-    max-width: 50%;
+  .container form {
+    padding-inline: 120px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -314,7 +326,6 @@ form .buttons .confirm {
 .container form .step-1 .input-box label {
   text-transform: capitalize;
   color: var(--marine-blue);
-  font-size: 15px;
 }
 .container form .step-1 .input-box label[data-msg] + input {
   border-color: var(--strawberry-red);
@@ -330,6 +341,9 @@ form .buttons .confirm {
 }
 .container form .step-1 .input-box input[type="text"] {
   text-transform: capitalize;
+}
+.container form .step-1 .input-box input::placeholder {
+  font-weight: normal;
 }
 .container form .step-1 .input-box input {
   border: 1px solid var(--light-gray);
@@ -370,10 +384,12 @@ form .step-2 .plans .box {
   flex: 1;
   height: 208px;
 }
+form .step-2 .plans .box:has(:checked) {
+  background-color: var(--magnolia);
+}
 form .step-2 .plans .box:has(:checked),
 form .step-2 .plans .box:hover {
   border-color: var(--purplish-blue);
-  background-color: var(--magnolia);
 }
 @media (min-width: 768px) {
   form .step-2 .plans .box {
@@ -459,10 +475,12 @@ form .step-3 .add-ons {
   flex-direction: column;
   row-gap: 20px;
 }
+form .step-3 .add-ons .box:has(input:checked) {
+  background-color: var(--magnolia);
+}
 form .step-3 .add-ons .box:has(input:checked),
 form .step-3 .add-ons .box:hover {
   border-color: var(--purplish-blue);
-  background-color: var(--magnolia);
 }
 form .step-3 .add-ons .box {
   border: 1px solid var(--light-gray);
@@ -524,40 +542,56 @@ form .step-4 .sub-and-add-ons {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  background-color: var(--alabaster);
+  row-gap: 25px;
 }
-form .step-4 .sub-and-add-ons li {
+form .step-4 .sub-and-add-ons,
+form .step-4 .total {
+  padding: 30px 25px;
+}
+@media (max-width: 767px) {
+  form .step-4 .sub-and-add-ons {
+    padding: 20px;
+    row-gap: 20px;
+  }
+}
+form .step-4 .sub-and-add-ons li,
+.total {
   display: flex;
   justify-content: space-between;
   text-transform: capitalize;
-  padding-inline: 20px;
 }
 form .step-4 .sub-and-add-ons .main {
-  padding-block: 30px 40px;
-  position: relative;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--light-gray);
 }
-form .step-4 .sub-and-add-ons .main::after {
-  content: "";
-  position: absolute;
-  bottom: 10px;
-  width: calc(100% - 40px);
-  height: 1px;
-  left: 20px;
-  background-color: var(--light-gray);
+@media (max-width: 767px) {
+  form .step-4 .sub-and-add-ons .main {
+    padding-bottom: 15px;
+  }
 }
 form .step-4 .sub-and-add-ons .main .label {
   text-transform: capitalize;
 }
 form .step-4 .sub-and-add-ons .main .label span {
   color: var(--marine-blue);
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 20px;
+}
+@media (max-width: 767px) {
+  form .step-4 .sub-and-add-ons .main .label span {
+    font-size: 18px;
+  }
 }
 form .step-4 .sub-and-add-ons .main .label a {
   display: block;
-  margin-top: 2px;
+  margin-top: 5px;
   color: var(--cool-gray);
   text-decoration: underline;
   transition: 0.5s;
+  font-size: 17px;
 }
+
 form .step-4 .sub-and-add-ons .main .label a:hover {
   color: var(--purplish-blue);
 }
@@ -565,28 +599,22 @@ form .step-4 .sub-and-add-ons .main .price {
   color: var(--marine-blue);
   font-weight: bold;
 }
-form .step-4 .sub-and-add-ons .add-on {
-  padding-block: 10px;
-}
-form .step-4 .sub-and-add-ons .add-on,
-form .step-4 .sub-and-add-ons .main {
-  background-color: var(--alabaster);
-}
-form .step-4 .sub-and-add-ons .add-on .label,
-form .step-4 .sub-and-add-ons .total .label {
-  color: var(--cool-gray);
-}
 form .step-4 .sub-and-add-ons .add-on .price {
   color: var(--marine-blue);
 }
-form .step-4 .sub-and-add-ons .total {
-  padding-block: 30px;
+form .step-4 .sub-and-add-ons .add-on .label,
+form .step-4 .total .label {
+  color: var(--cool-gray);
 }
-
-form .step-4 .sub-and-add-ons .total .price {
+form .step-4 .total .label {
+  font-size: 17px;
+}
+form .step-4 .total .price {
   color: var(--purplish-blue);
   font-weight: bold;
+  font-size: 20px;
 }
+
 /* end step 4 */
 /* start step 5 */
 form .step-5 {
@@ -595,7 +623,12 @@ form .step-5 {
   justify-content: center;
   align-items: center;
   row-gap: 20px;
-  padding-top: 60px;
+  padding-block: 60px;
+}
+@media (min-width: 992px) {
+  form .step-5 {
+    padding-right: 50px;
+  }
 }
 form .step-5 img {
   display: block;
@@ -604,6 +637,8 @@ form .step-5 img {
 }
 form .step-5 h2 {
   color: var(--marine-blue);
+  font-weight: bold;
+  font-size: 35px;
 }
 form .step-5 p {
   text-align: center;

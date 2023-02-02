@@ -25,6 +25,11 @@ nextButton.addEventListener("click", (e) => {
 backbutton.addEventListener("click", (e) => {
   e.preventDefault();
   if (nowStep !== 1) {
+    if (nowStep === 4) {
+      nextButton.innerHTML = "next";
+      nextButton.classList.remove("confirm");
+      nextButton.classList.add("next");
+    }
     nowStep--;
     showSteps(nowStep);
     backwardSteps.pop();
@@ -167,14 +172,18 @@ async function showStep4() {
     localStorage["addOns"] === "" ? false : localStorage["addOns"].split(",");
   let [mainLi, planPrice] = createMainLi(data, plan, timePlan);
   let ul = document.querySelector(".step-4 .sub-and-add-ons");
+  let total = document.querySelector(".step-4 .total-cont");
   ul.innerHTML = "";
+  total.innerHTML = "";
   if (addOns) {
     let [addOnLis, addOnPrice] = createAddOnLi(data, timePlan, addOns);
     let totalLi = createTotalLi(planPrice, timePlan, addOnPrice);
-    ul.append(mainLi, ...addOnLis, totalLi);
+    ul.append(mainLi, ...addOnLis);
+    total.append(totalLi);
   } else {
     let totalLi = createTotalLi(planPrice, timePlan);
-    ul.append(mainLi, totalLi);
+    ul.append(mainLi);
+    total.append(totalLi);
   }
 }
 function createMainLi(data, plan, timePlan) {
@@ -214,15 +223,15 @@ function createTotalLi(planPrice, timePlan, addOnPrice = false) {
     : 0;
 
   let total = addOnSum + +planPrice.match(/\d+/)[0];
-  let li = document.createElement("li");
-  li.classList.add("total");
-  li.innerHTML = `
+  let div = document.createElement("div");
+  div.classList.add("total");
+  div.innerHTML = `
       <div class="label">total (per ${timePlan.slice(0, -2)})</div>
       <span class="price">+$${total}/${
     timePlan === "monthly" ? "mo" : "yr"
   }</span>
   `;
-  return li;
+  return div;
 }
 
 // next step functions
